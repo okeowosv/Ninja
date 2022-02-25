@@ -4,7 +4,14 @@ void main() => runApp(MaterialApp(
       home: ninjaCard(),
     ));
 
-class ninjaCard extends StatelessWidget {
+class ninjaCard extends StatefulWidget {
+  @override
+  State<ninjaCard> createState() => _ninjaCardState();
+}
+
+class _ninjaCardState extends State<ninjaCard> {
+  int ninjaLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +21,15 @@ class ninjaCard extends StatelessWidget {
         title: Text('Ninja ID Card'),
         backgroundColor: Colors.grey[850],
         elevation: 0.0, //remove drop shadow
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -57,7 +73,7 @@ class ninjaCard extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              '8',
+              '$ninjaLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2,
